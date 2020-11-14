@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    home
+    <van-button to="/flipDemo">3D flip</van-button>
   </div>
 </template>
 

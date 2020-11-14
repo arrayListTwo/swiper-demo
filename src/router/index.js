@@ -8,6 +8,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: () => import('../views/Home.vue')
+  },
+  {
+    path: '/flipDemo',
+    name: 'flipDemo',
+    component: () => import('../views/flip-demo.vue')
   }
 ]
 
