@@ -1,0 +1,45 @@
+{
+  "name": "swiper-demo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "core-js": "~3.7.0",
+    "cube-ui": "~1.12.44",
+    "swiper": "~6.3.5",
+    "vant": "^2.10.13",
+    "vue": "~2.6.12",
+    "vue-awesome-swiper": "~4.1.1",
+    "vue-router": "~3.4.9",
+    "vuex": "~3.5.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.8",
+    "@vue/cli-plugin-eslint": "~4.5.8",
+    "@vue/cli-plugin-router": "~4.5.8",
+    "@vue/cli-plugin-vuex": "~4.5.8",
+    "@vue/cli-service": "~4.5.8",
+    "@vue/eslint-config-standard": "~5.1.2",
+    "babel-eslint": "~10.1.0",
+    "eslint": "~6.8.0",
+    "eslint-plugin-import": "~2.22.1",
+    "eslint-plugin-node": "~11.1.0",
+    "eslint-plugin-promise": "~4.2.1",
+    "eslint-plugin-standard": "~4.1.0",
+    "eslint-plugin-vue": "~6.2.2",
+    "stylus": "~0.54.8",
+    "stylus-loader": "~3.0.2",
+    "vue-cli-plugin-cube-ui": "~0.2.5",
+    "vue-template-compiler": "~2.6.12"
+  },
+  "transformModules": {
+    "cube-ui": {
+      "transform": "cube-ui/src/modules/${member}",
+      "kebabCase": true
+    }
+  }
+}
