@@ -4,6 +4,7 @@
       <swiper-slide class="slide slide-1">slide-1</swiper-slide>
       <swiper-slide class="slide slide-2">
         <van-nav-bar
+        title="第二页calc滚动"
           left-text="上一页"
           right-text="下一页"
           left-arrow
@@ -18,7 +19,23 @@
           </cube-scroll>
         </div>
       </swiper-slide>
-      <swiper-slide class="slide slide-3">slide-3</swiper-slide>
+      <swiper-slide class="slide slide-3">
+        <van-nav-bar
+        title="第三页flex滚动"
+          left-text="上一页"
+          right-text="下一页"
+          left-arrow
+          @click-left="onClickLeft"
+          @click-right="onClickRight"
+        />
+        <div class="scroll-wrapper">
+          <cube-scroll>
+            <div class="scroll-inner">
+              <div v-for="i in 200" :key="i">{{i}}</div>
+            </div>
+          </cube-scroll>
+        </div>
+      </swiper-slide>
       <swiper-slide class="slide slide-4">slide-4</swiper-slide>
       <swiper-slide class="slide slide-5">slide-5</swiper-slide>
     </swiper>
@@ -43,8 +60,14 @@ export default {
   },
   data () {
     return {
+      activeIndex: 0,
       swiperOption: {
-        effect: 'flip' // flip  cube  coverflow   fade
+        effect: 'flip', // flip  cube  coverflow   fade
+        on: {
+          slideChange: () => {
+            this.activeIndex = this.swiper.activeIndex
+          }
+        }
       }
     }
   },
@@ -54,10 +77,12 @@ export default {
   },
   methods: {
     onClickLeft () {
-      this.swiper.slideTo(0, 1000, false)
+      console.log('this.currentPage: ', this.activeIndex)
+      this.swiper.slidePrev()
     },
     onClickRight () {
-      this.swiper.slideTo(2, 1000, false)
+      console.log('this.currentPage: ', this.activeIndex)
+      this.swiper.slideNext()
     }
   }
 }
@@ -84,6 +109,12 @@ export default {
       }
        &.slide-3{
         background-color #fff
+        display flex
+        flex-direction column
+        .scroll-wrapper{
+          flex 1 0 auto
+          height 0
+        }
       }
        &.slide-4{
         background-color #f0f
