@@ -2,7 +2,22 @@
   <div class="flip">
     <swiper class="swiper" :options="swiperOption" ref="mySwiper">
       <swiper-slide class="slide slide-1">slide-1</swiper-slide>
-      <swiper-slide class="slide slide-2">slide-2</swiper-slide>
+      <swiper-slide class="slide slide-2">
+        <van-nav-bar
+          left-text="上一页"
+          right-text="下一页"
+          left-arrow
+          @click-left="onClickLeft"
+          @click-right="onClickRight"
+        />
+        <div class="scroll-wrapper">
+          <cube-scroll>
+            <div class="scroll-inner">
+              <div v-for="i in 200" :key="i">{{i}}</div>
+            </div>
+          </cube-scroll>
+        </div>
+      </swiper-slide>
       <swiper-slide class="slide slide-3">slide-3</swiper-slide>
       <swiper-slide class="slide slide-4">slide-4</swiper-slide>
       <swiper-slide class="slide slide-5">slide-5</swiper-slide>
@@ -29,13 +44,21 @@ export default {
   data () {
     return {
       swiperOption: {
-        effect: 'thumbs' // flip  cube  coverflow   fade
+        effect: 'flip' // flip  cube  coverflow   fade
       }
     }
   },
   mounted () {
     console.log('Current Swiper instance object', this.swiper)
     // this.swiper.slideTo(3, 1000, false)
+  },
+  methods: {
+    onClickLeft () {
+      this.swiper.slideTo(0, 1000, false)
+    },
+    onClickRight () {
+      this.swiper.slideTo(2, 1000, false)
+    }
   }
 }
 </script>
@@ -55,6 +78,9 @@ export default {
       }
        &.slide-2{
         background-color #ff0
+        .scroll-wrapper{
+          height calc(100% - 46px)
+        }
       }
        &.slide-3{
         background-color #fff
