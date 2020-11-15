@@ -12,11 +12,9 @@
 
 <script>
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-// import { Swiper as SwiperClass, effectFlip } from 'swiper/core'
-import { Swiper as SwiperClass, EffectFlip } from 'swiper/core'
+import { Swiper as SwiperClass, EffectFlip, EffectCube, EffectCoverflow, EffectFade, Thumbs } from 'swiper/core'
 import 'swiper/swiper-bundle.css'
-// SwiperClass.use(effectFlip)
-SwiperClass.use(EffectFlip)
+SwiperClass.use([EffectFlip, EffectCube, EffectCoverflow, EffectFade, Thumbs])
 export default {
   name: 'flip-demo',
   components: {
@@ -31,7 +29,7 @@ export default {
   data () {
     return {
       swiperOption: {
-        effect: 'flip'
+        effect: 'thumbs' // flip  cube  coverflow   fade
       }
     }
   },
@@ -52,6 +50,21 @@ export default {
     .slide {
       height: 100%;
       width: 100%;
+      &.slide-1{
+        background-color #f00
+      }
+       &.slide-2{
+        background-color #ff0
+      }
+       &.slide-3{
+        background-color #fff
+      }
+       &.slide-4{
+        background-color #f0f
+      }
+       &.slide-5{
+        background-color #00f
+      }
     }
   }
 }
