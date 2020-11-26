@@ -91,7 +91,7 @@ export default {
           slideChange: (swiper) => { // 箭头函数，this为vue实例；第一个参数为swiper实例
             this.activeIndex = this.swiper.activeIndex
           },
-          // progress: (swiper, progress) => { // 滚动监听
+          // progress: (swiper, progress) => { // 滚动监听。使用箭头函数，接收swiper参数，则可将滚动监听函数抽取到methos中，代码易于阅读和维护
           //   for (var i = 0; i < swiper.slides.length; i++) {
           //     // 因为活动的就是0
           //     swiper.slides[i].style.transform = 'scale(' + (swiper.slides[i].progress + 1) + ')'
