@@ -85,10 +85,37 @@ export default {
     return {
       activeIndex: 0,
       swiperOption: {
-        effect: 'flip', // flip  cube  coverflow   fade
+        // effect: 'flip', // flip  cube  coverflow   fade
+        watchSlidesProgress: true, // 开启监听swiper滚动
         on: {
-          slideChange: () => {
+          slideChange: (swiper) => { // 箭头函数，this为vue实例；第一个参数为swiper实例
             this.activeIndex = this.swiper.activeIndex
+          },
+          // progress: (swiper, progress) => { // 滚动监听
+          //   for (var i = 0; i < swiper.slides.length; i++) {
+          //     // 因为活动的就是0
+          //     swiper.slides[i].style.transform = 'scale(' + (swiper.slides[i].progress + 1) + ')'
+          //   }
+          // }
+          progress: function () { // 普通函数，this为swiper实例
+            for (let i = 0; i < this.slides.length; i++) {
+              const slide = this.slides.eq(i) // 指定匹配元素集缩减值; this.slides得到的是jQuery对象， eq方法获取指定索引的jQuery对象
+              const slideProgress = this.slides[i].progress // 当前元素集的progress值
+
+              let modify = 0 // 偏移权重
+              if (parseInt(Math.abs(slideProgress)) > 0) {
+                modify = Math.abs(slideProgress) * 0.2 // 不一定要0.2，可自行调整
+              }
+              const translate = slideProgress * modify * 500 + 'px' // 500是swiper-slide的宽度
+              const scale = 1 - Math.abs(slideProgress) / 5 // 缩放权重值，随着progress由中向两边依次递减，可自行调整
+              const zIndex = 99 - Math.abs(Math.round(10 * slideProgress))
+              slide.transform(`translateX(${translate}) scale(${scale})`)
+              slide.css('zIndex', zIndex)
+              slide.css('opacity', 1) // 是否可见
+              if (parseInt(Math.abs(slideProgress)) > 1) { // 设置了只有选中的元素以及他两遍的显示，其他隐藏
+                slide.css('opacity', 0)
+              }
+            }
           }
         }
       }
